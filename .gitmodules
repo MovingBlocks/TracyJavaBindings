@@ -1,0 +1,5 @@
+[submodule "tracy-jni/tracy"]
+    active = true
+	path = tracy-jni/tracy
+	url = https://github.com/wolfpld/tracy.git
+	branch = d4a4b623968d99a7403cd93bae5247ed0735680a
