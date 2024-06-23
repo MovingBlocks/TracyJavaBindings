@@ -39,6 +39,10 @@ tasks.withType(Jar).configureEach {
         include("*.dylib")
         into("macosx")
     }
+    from (new File(project('tracy-jni').projectDir, "tracy")) {
+        include("LICENSE")
+        rename("LICENSE", "TRACY_LICENSE")
+    }
 }
 
 tasks.named("test", Test) {
