@@ -18,7 +18,7 @@ public final class Tracy {
             if (libraryDirectory.exists() && libraryDirectory.isDirectory()) {
                 String architecture = System.getProperty("os.arch");
                 for (File file : libraryDirectory.listFiles()) {
-                    if (file.getName().startsWith("tracy-jni-" + architecture) || file.getName().startsWith("libtracy-jni" + architecture)) {
+                    if (file.getName().startsWith("tracy-jni-" + architecture) || file.getName().startsWith("libtracy-jni-" + architecture)) {
                         System.load(file.getPath());
                     }
                 }
