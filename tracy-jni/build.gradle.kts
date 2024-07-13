@@ -10,6 +10,7 @@ plugins {
 version = "1.0.0"
 
 library {
+    baseName = "tracy-jni-"  + System.getProperty("os.arch")
     source.from(file("src"))
     privateHeaders.from(
         file("src"), file("tracy/public"),

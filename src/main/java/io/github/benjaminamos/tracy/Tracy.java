@@ -3,7 +3,7 @@
 
 package io.github.benjaminamos.tracy;
 
-import java.nio.file.Paths;
+import java.io.File;
 
 public final class Tracy {
     private Tracy() {
@@ -12,9 +12,17 @@ public final class Tracy {
     static {
         String libraryPath = System.getProperty("org.terasology.librarypath");
         if (libraryPath == null) {
-            System.loadLibrary("tracy-jni");
+            System.loadLibrary("tracy-jni-" + System.getProperty("os.arch"));
         } else {
-            System.load(Paths.get(libraryPath + "/tracy-jni.dll").toAbsolutePath().toString());
+            File libraryDirectory = new File(libraryPath);
+            if (libraryDirectory.exists() && libraryDirectory.isDirectory()) {
+                String architecture = System.getProperty("os.arch");
+                for (File file : libraryDirectory.listFiles()) {
+                    if (file.getName().startsWith("tracy-jni-" + architecture) || file.getName().startsWith("libtracy-jni" + architecture)) {
+                        System.load(file.getPath());
+                    }
+                }
+            }
         }
     }
 
