@@ -54,5 +54,5 @@ tasks.named("test", Test) {
         events("passed")
     }
 
-    systemProperty "java.library.path", project(":tracy-jni").getLayout().getBuildDirectory().dir("/lib/main/debug").get().asFile.absolutePath
+    systemProperty "java.library.path", project(":tracy-jni").getLayout().getBuildDirectory().dir("lib/main/debug").get().asFile.absolutePath
 }
