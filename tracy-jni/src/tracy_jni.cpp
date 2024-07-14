@@ -4,8 +4,6 @@
 #define TRACY_NO_CONTEXT_SWITCH
 #define TRACY_NO_SAMPLING
 #define TRACY_NO_FRAME_IMAGE
-// TODO: Ideally, do not define TRACY_NO_EXIT. Exit gracefully instead.
-#define TRACY_NO_EXIT
 #define TRACY_ENABLE
 #include "TracyClient.cpp"
 #include "tracy/TracyC.h"
