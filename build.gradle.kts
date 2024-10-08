@@ -1,6 +1,10 @@
 // Copyright 2024 The Terasology Foundation
 // SPDX-License-Identifier: Apache-2.0
 
+// the following is possible to build for differing java versions. default is java-17.
+// gradle clean build -PjavacRelease=21
+val javacRelease = (project.findProperty("javacRelease") ?: "17") as String
+
 plugins {
     id("java-library")
 }
@@ -19,6 +23,10 @@ dependencies {
 
 sourceSets {
     main
+}
+
+tasks.compileJava {
+  options.release.set(Integer.parseInt(javacRelease))
 }
 
 tasks.withType<Jar>().configureEach {
