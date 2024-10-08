@@ -2,18 +2,18 @@
 // SPDX-License-Identifier: Apache-2.0
 
 plugins {
-    id 'java-library'
+    id("java-library")
 }
 
-group 'io.github.benjaminamos.TracyJavaBindings'
-version '1.0-SNAPSHOT'
+group "io.github.benjaminamos.TracyJavaBindings"
+version "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
+    testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
@@ -22,7 +22,7 @@ sourceSets {
 }
 
 tasks.withType(Jar).configureEach {
-    def sharedLibraryTasks = project('tracy-jni').tasks.withType(LinkSharedLibrary)
+    def sharedLibraryTasks = project("tracy-jni").tasks.withType(LinkSharedLibrary)
     dependsOn sharedLibraryTasks
     def sharedLibraryOutputs = sharedLibraryTasks.find { task ->
         task.name.toLowerCase().contains("release")
@@ -39,7 +39,7 @@ tasks.withType(Jar).configureEach {
         include("*.dylib")
         into("macosx")
     }
-    from (new File(project('tracy-jni').projectDir, "tracy")) {
+    from (new File(project("tracy-jni").projectDir, "tracy")) {
         include("LICENSE")
         rename("LICENSE", "TRACY_LICENSE")
     }
